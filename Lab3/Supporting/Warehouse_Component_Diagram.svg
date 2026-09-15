@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<defs>
+  <style>
+    .title{font:700 38px Arial;fill:#202124}.sub{font:18px Arial;fill:#5f6368}.layer{fill:#f8fafc;stroke:#cbd5e1;stroke-width:2}.layerTitle{font:700 18px Arial;fill:#49657d;letter-spacing:1px}.comp{fill:#fff;stroke:#274c77;stroke-width:3;rx:10}.st{font:15px Arial;fill:#6b7280}.cn{font:700 22px Arial;fill:#172b4d}.resp{font:16px Arial;fill:#475569}.conn{fill:none;stroke:#334155;stroke-width:3}.stem{stroke:#334155;stroke-width:3}.iface{font:700 16px Arial;fill:#0f4775}.proto{font:14px Arial;fill:#64748b}.note{font:14px Arial;fill:#475569}.legend{fill:#fff;stroke:#d8dee6;stroke-width:2;rx:10}
+  </style>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2783de"/></marker>
+</defs>
+<rect width="1600" height="1000" fill="#ffffff"/>
+<rect x="0" y="0" width="1600" height="12" fill="#2783de"/>
+<text x="70" y="75" class="title">Warehouse Inventory &amp; Pallet Location Tracker</text>
+<text x="70" y="112" class="sub">UML Component Diagram · Layered Architecture · C. Harshal Rajesh · PES1UG24CS118 · Lab 3</text>
+
+<!-- layers -->
+<rect x="70" y="155" width="1460" height="190" class="layer"/>
+<text x="95" y="186" class="layerTitle">PRESENTATION LAYER</text>
+<rect x="70" y="375" width="1460" height="285" class="layer"/>
+<text x="95" y="406" class="layerTitle">BUSINESS LAYER</text>
+<rect x="70" y="690" width="1460" height="200" class="layer"/>
+<text x="95" y="721" class="layerTitle">INFRASTRUCTURE &amp; DATA LAYER</text>
+
+<!-- components -->
+<g id="ui"><rect x="570" y="205" width="460" height="105" class="comp"/><text x="800" y="238" text-anchor="middle" class="st">«component»</text><text x="800" y="271" text-anchor="middle" class="cn">Warehouse Operator UI</text><text x="800" y="296" text-anchor="middle" class="resp">Placement, lookup and movement screens</text><rect x="994" y="220" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/><rect x="1004" y="235" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/></g>
+<g id="mgr"><rect x="500" y="450" width="600" height="125" class="comp"/><text x="800" y="484" text-anchor="middle" class="st">«component»</text><text x="800" y="520" text-anchor="middle" class="cn">Inventory &amp; Pallet Manager</text><text x="800" y="548" text-anchor="middle" class="resp">Orchestrates scan, placement, search and movement logging</text><rect x="1064" y="465" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/><rect x="1074" y="480" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/></g>
+<g id="capacity"><rect x="1170" y="450" width="300" height="125" class="comp"/><text x="1320" y="484" text-anchor="middle" class="st">«component»</text><text x="1320" y="519" text-anchor="middle" class="cn">Rack Capacity Service</text><text x="1320" y="548" text-anchor="middle" class="resp">Validates safe load limits</text><rect x="1434" y="465" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/><rect x="1444" y="480" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/></g>
+<g id="scanner"><rect x="150" y="750" width="420" height="105" class="comp"/><text x="360" y="782" text-anchor="middle" class="st">«component»</text><text x="360" y="816" text-anchor="middle" class="cn">Barcode / RFID Adapter</text><text x="360" y="841" text-anchor="middle" class="resp">Normalises scanner input and tag IDs</text><rect x="534" y="765" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/><rect x="544" y="780" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/></g>
+<g id="db"><rect x="1030" y="750" width="420" height="105" class="comp"/><text x="1240" y="782" text-anchor="middle" class="st">«component»</text><text x="1240" y="816" text-anchor="middle" class="cn">Warehouse Database</text><text x="1240" y="841" text-anchor="middle" class="resp">Pallets, 3D locations, racks and movements</text><rect x="1414" y="765" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/><rect x="1424" y="780" width="17" height="12" fill="none" stroke="#274c77" stroke-width="2"/></g>
+
+<!-- Interface 1: Manager provides to UI requires. Ball at manager, socket at UI -->
+<path d="M800 450 L800 330" class="conn"/><circle cx="800" cy="438" r="10" fill="#fff" stroke="#334155" stroke-width="3"/><path d="M788 321 A14 14 0 0 0 812 321" fill="none" stroke="#334155" stroke-width="3"/>
+<text x="835" y="365" class="iface">IWarehouseOperations</text><text x="835" y="386" class="proto">local API · place / search / move</text>
+<path d="M770 410 L770 350" stroke="#2783de" stroke-width="2" marker-end="url(#arrow)"/><text x="690" y="386" class="note">results</text>
+
+<!-- Interface 2: scanner provides to manager requires -->
+<path d="M570 802 L650 802 L650 575" class="conn"/><circle cx="584" cy="802" r="10" fill="#fff" stroke="#334155" stroke-width="3"/><path d="M638 584 A14 14 0 0 1 662 584" fill="none" stroke="#334155" stroke-width="3"/>
+<text x="675" y="688" class="iface">IScanData</text><text x="675" y="709" class="proto">device API · barcode / RFID tag</text>
+<path d="M615 777 L650 742" stroke="#2783de" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- Interface 3: capacity provides to manager requires -->
+<path d="M1100 512 L1170 512" class="conn"/><path d="M1111 500 A14 14 0 0 1 1111 524" fill="none" stroke="#334155" stroke-width="3"/><circle cx="1156" cy="512" r="10" fill="#fff" stroke="#334155" stroke-width="3"/>
+<text x="1128" y="425" text-anchor="middle" class="iface">ICapacityValidation</text><text x="1128" y="445" text-anchor="middle" class="proto">internal API · weight check</text>
+<path d="M1137 490 L1160 490" stroke="#2783de" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- Interface 4: DB provides to manager requires -->
+<path d="M950 575 L950 802 L1030 802" class="conn"/><path d="M938 586 A14 14 0 0 1 962 586" fill="none" stroke="#334155" stroke-width="3"/><circle cx="1016" cy="802" r="10" fill="#fff" stroke="#334155" stroke-width="3"/>
+<text x="980" y="665" class="iface">IWarehouseRepository</text><text x="980" y="686" class="proto">SQL · locations / racks / audit trail</text>
+<path d="M975 777 L1010 777" stroke="#2783de" stroke-width="2" marker-end="url(#arrow)"/>
+
+<!-- legend -->
+<rect x="70" y="915" width="1460" height="58" class="legend"/>
+<text x="95" y="950" class="note">Notation:</text><circle cx="185" cy="944" r="9" fill="#fff" stroke="#334155" stroke-width="3"/><text x="205" y="950" class="note">provided interface (ball)</text><path d="M400 932 A14 14 0 0 1 400 956" fill="none" stroke="#334155" stroke-width="3"/><text x="425" y="950" class="note">required interface (socket)</text><line x1="655" y1="944" x2="715" y2="944" class="conn"/><text x="730" y="950" class="note">assembly connector</text><line x1="970" y1="944" x2="1030" y2="944" stroke="#2783de" stroke-width="2" marker-end="url(#arrow)"/><text x="1045" y="950" class="note">primary data flow</text><text x="1245" y="950" class="note">5 components · 4 interfaces</text>
+</svg>
